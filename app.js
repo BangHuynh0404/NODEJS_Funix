@@ -7,16 +7,9 @@ const bodyParser = require('body-parser');
 const expressHbs = require('express-handlebars');
 //Main
 const app = express();
+
+app.set('view engine', 'ejs');
 app.set('views', 'views'); //in pug view is after
-app.engine(
-  'hbs',
-  expressHbs({
-    extname: 'hbs',
-    layoutsDir: 'views/layouts/',
-    defaultLayout: 'main-layout',
-  })
-);
-app.set('view engine', 'hbs');
 
 const adminData = require('./routes/admin');
 const shopRouter = require('./routes/shop');
