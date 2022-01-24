@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+console.log(path.dirname(process.mainModule.filename));
 module.exports = class Product {
   constructor(t) {
     this.title = t;
@@ -7,7 +8,7 @@ module.exports = class Product {
 
   save() {
     const p = path.join(
-      path.dirname(process.main.filename),
+      path.dirname(process.mainModule.filename),
       'data',
       'products.json'
     );
