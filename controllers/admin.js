@@ -6,7 +6,7 @@ exports.getAddProduct = (req, res, next) => {
     path: '/admin/add-product',
     formsCSS: true,
     productCSS: true,
-    activeAddProduct: true
+    activeAddProduct: true,
   });
 };
 
@@ -20,12 +20,18 @@ exports.postAddProduct = (req, res, next) => {
   res.redirect('/');
 };
 
+exports.test = (req, res, next) => {
+  const testval = req.body.test;
+  console.log(testval);
+
+  res.redirect('/');
+};
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
+  Product.fetchAll((products) => {
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',
-      path: '/admin/products'
+      path: '/admin/products',
     });
   });
 };

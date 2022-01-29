@@ -27,5 +27,12 @@
 
             <button class="btn" type="submit">Add Product</button>
         </form>
+        <form class="product-form" action="/admin/addtest" method="POST">
+            <div class="form-control">
+                <label for="test">test</label>
+                <input type="text" name="test" value='bang'>
+            </div>
+            <button class="btn" type="submit">check console</button>
+        </form> 
     </main>
 <%- include('../includes/end.ejs') %>

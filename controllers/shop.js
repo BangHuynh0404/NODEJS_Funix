@@ -37,6 +37,13 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+exports.postCard = (req, res, next) => {
+  //Đặt name của input sao thì lấy value của nó tronng req.body vậy
+  const prodId = req.body.productId;
+  console.log(prodId);
+  res.redirect('/cart');
+};
+
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     path: '/orders',
