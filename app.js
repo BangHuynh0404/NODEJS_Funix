@@ -7,7 +7,8 @@ const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
 const Product = require('./models/product');
 const User = require('./models/user');
-
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -34,11 +35,15 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
-User.hasMany(Product);
+User.hasMany(Product); //1 user có thể có nhiều Product
+User.hasOne(Cart); //User có 1 giỏ hàng
+Cart.belongsTo(User); //Cùng 1 nghia với trên: Tạo 1 cột userId trong bảng Cart
+Cart.belongsToMany(Product, { through: CartItem }); //1 giỏ có nhiều sp
+Product.belongsToMany(Cart, { through: CartItem }); // 1 sp có thể có trong nhiều giỏ hàng
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  // .sync()
   .then((result) => {
     return User.findByPk(1);
     // console.log(result);
