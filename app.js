@@ -9,6 +9,8 @@ const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -16,6 +18,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const { openDelimiter } = require('ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,6 +43,9 @@ User.hasOne(Cart); //User có 1 giỏ hàng
 Cart.belongsTo(User); //Cùng 1 nghia với trên: Tạo 1 cột userId trong bảng Cart
 Cart.belongsToMany(Product, { through: CartItem }); //1 giỏ có nhiều sp
 Product.belongsToMany(Cart, { through: CartItem }); // 1 sp có thể có trong nhiều giỏ hàng
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
   // .sync({ force: true })
