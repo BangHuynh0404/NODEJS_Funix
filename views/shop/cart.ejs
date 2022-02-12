@@ -16,15 +16,15 @@
                                 <button class="btn danger" type="submit">Delete</button>
                             </form>
                         </li>
-                       
                     <% }) %>
                 </ul>
+                <hr>
                 <div class="centered">
-                    <hr/>
-                <form  action="/create-order" method="POST">
-                    <button type="submit" class="btn" >Order now</button>
-                </form>
-            </div>
+                    <form action="/create-order" method="POST">
+                        <button type="submit" class="btn">Order Now!</button>
+                    </form>
+                </div>
+                
             <% } else { %>
                 <h1>No Products in Cart!</h1>
             <% } %>
