@@ -7,6 +7,7 @@ const mongoConnect = (callback) => {
   )
     .then((client) => {
       console.log('connected');
+      // console.log(client.db());
       _db = client.db();
       callback();
     })
@@ -15,6 +16,7 @@ const mongoConnect = (callback) => {
       throw err;
     });
 };
+
 const getDb = () => {
   if (_db) {
     return _db;
