@@ -18,6 +18,8 @@ exports.postAddProduct = (req, res, next) => {
     price: price,
     description: description,
     imageUrl: imageUrl,
+    userId: req.user,
+    //or just use a entire user object and mongoose will auto pick the ID for You
   });
   product
     .save() //method có sẵn trong Mongoose
