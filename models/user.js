@@ -53,6 +53,7 @@ userSchema.methods.removeFromCart = function (productId) {
   this.cart.items = updatedCartItems;
   return this.save();
 };
+userSchema.methods.postOrder = function () {};
 module.exports = mongoose.model('User', userSchema);
 
 // const mongodb = require('mongodb');
